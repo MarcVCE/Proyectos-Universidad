@@ -1,0 +1,30 @@
+version: "3.8"
+services: 
+ mongo:
+  image: mongo
+  ports: 
+   - 27017:27017
+ back:
+  image: denoland/deno
+  ports: 
+   - 3002:3002
+  volumes:
+   - ./back:/back/
+  environment: 
+   MONGO_URL: "mongodb://mongo/basededatos"
+  command: bash -c "cd back && deno task run" 
+  depends_on: 
+   - mongo 
+ front:
+  image: node
+  ports: 
+   - 3000:3000
+  volumes:
+   - ./front:/front/
+  command: bash -c "cd front && npm run dev" 
+  depends_on: 
+   - back 
+
+   
+#  command: bash -c "cd front && npm install && npm run dev" 
+   

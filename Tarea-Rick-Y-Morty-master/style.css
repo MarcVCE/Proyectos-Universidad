@@ -1,0 +1,27 @@
+body {
+  background-image: url("rickymortybackground.jpg");
+  text-align: center;
+}
+
+#characters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:space-around;
+    margin: 50px;  /* Esto es como hacer margin de 50px en cada lado (top,right,botton,left)*/
+    /* margin: 50px 20px; Haces un margin de 50px en top y bottom, y un margin de 20px en right y left*/
+
+}
+
+img {
+  border-radius: 50%;
+}
+
+#characters div div {
+  margin-top: 20px;
+  margin-bottom: 20px;
+} 
+
+span{
+  color:rgb(199, 30, 165);
+  font-size: 20px;
+}
