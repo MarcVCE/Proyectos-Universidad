@@ -1,0 +1,263 @@
+\documentclass[a4paper,,onecolumn,10pt]{article}
+\usepackage[spanish]{babel}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[latin1]{inputenc}
+\usepackage{listings}
+
+\lstdefinestyle{estilocodigo}{
+backgroundcolor=\color{gray!12},
+keywordstyle=\color{magenta},
+stringstyle=\color{blue!50!red},
+showstringspaces=false,
+numbers=left,
+frame=single,
+breaklines=true
+}
+
+\begin{document}
+\pagecolor{gray} %color fondo gris
+\color{blue} %letras en azul
+
+\begin{lstlisting}[language=C,basicstyle=\footnotesize, style=estilocodigo]
+#include<pthread.h>
+#include<stdio.h>
+#include<stdlib.h>
+
+int main (int argc , char * argv[]){
+   int valor=20;
+   int * puntero=NULL;
+   puntero = &valor;
+   *puntero = 40;
+   printf("Direccion de memoria de valor: %p\n", &valor);
+   printf("Direccion de memoria de puntero: %p\n", &puntero);
+   printf("Puntero numero: %d\n",*puntero);
+   printf("Valor numero: %d\n",valor);
+   
+}
+\end{lstlisting}
+
+\textbf{Solucion}
+
+Direccion de memoria de valor:0x7ffead1bb5f4
+
+Direccion de memoria de valor:0x7ffead1bb5f8
+
+Puntero numero:40
+
+Valor numero:40
+\vspace{7.5mm}
+
+Valor = 20 
+
+*Puntero = NULL
+
+*Puntero $\rightarrow$ NULL
+
+Puntero $\rightarrow$ 0x7ffead1bb5f4 (20)
+
+*Puntero = 40
+
+Puntero es 0x7ffead1bb5f8(40) 
+
+Puntero $\rightarrow$ 0x7ffead1bb5f4 (40)
+
+Valor = 40 
+
+\vspace{10mm}
+
+{\color{RubineRed} \rule{\linewidth}{0.5mm} }
+
+
+\begin{lstlisting}[language=C,basicstyle=\footnotesize, style=estilocodigo]
+#include<pthread.h>
+#include<stdio.h>
+#include<stdlib.h>
+
+int main (int argc , char * argv[]){
+   int valor=20;
+   int * puntero=NULL;
+   puntero = &valor;
+   puntero = 40;
+   printf("Direccion de memoria de valor: %p\n", &valor);
+   printf("Direccion de memoria de puntero: %p\n", &puntero);
+   printf("Puntero numero: %d\n",puntero);
+   printf("Valor numero: %d\n",valor);
+   
+}
+\end{lstlisting}
+
+\textbf{Solucion}
+
+Direccion de memoria de valor:0x7ffead1bb5f4
+
+Direccion de memoria de valor:0x7ffead1bb5f8
+
+Puntero numero:40
+
+Valor numero:20
+\vspace{7.5mm}
+
+Valor = 20 
+
+*Puntero = NULL
+
+*Puntero $\rightarrow$ NULL
+
+Puntero $\rightarrow$ 0x7ffead1bb5f4 (20)
+
+Puntero = 40
+
+Puntero es 0x7ffead1bb5f8(40) 
+
+Puntero $\rightarrow$ 0x7ffead1bb5f4 (20)
+
+Valor = 20
+
+\vspace{10mm}
+
+{\color{RubineRed} \rule{\linewidth}{0.5mm} }
+
+\begin{lstlisting}[language=C,basicstyle=\footnotesize, style=estilocodigo]
+#include<pthread.h>
+#include<stdio.h>
+#include<stdlib.h>
+
+void valorsuma(int * mipuntero){
+    int suma= * mipuntero+20;
+    printf("Valor de suma: %d\n",suma);
+}
+
+int main (int argc , char * argv[]){
+   int * puntero=NULL;
+   puntero=40;
+   printf("Puntero numero: %d\n",puntero);
+   valorsuma(&puntero);
+   printf("Puntero numero: %d\n",puntero);
+   
+}
+\end{lstlisting}
+
+\textbf{Solucion}
+
+Puntero numero:40
+
+Valor de suma: 60 
+
+Puntero numero:40
+
+\vspace{7.5mm}
+
+*Puntero = NULL
+
+*Puntero $\rightarrow$ NULL
+
+Puntero = 40
+
+int *mipuntero = $\&$puntero
+
+*mipuntero $\rightarrow$ direccion puntero(40)
+
+mipuntero=40
+
+\vspace{10mm}
+
+{\color{RubineRed} \rule{\linewidth}{0.5mm} }
+
+\begin{lstlisting}[language=C,basicstyle=\footnotesize, style=estilocodigo]
+#include<pthread.h>
+#include<stdio.h>
+#include<stdlib.h>
+
+void valorsuma(int * mipuntero){
+    * mipuntero= * mipuntero+20;
+    printf("Valor de suma: %d\n",* mipuntero);
+}
+
+int main (int argc , char * argv[]){
+   int * puntero=NULL;
+   puntero=40;
+   printf("Puntero numero: %d\n",puntero);
+   valorsuma(&puntero);
+   printf("Puntero numero: %d\n",puntero);
+   
+}
+\end{lstlisting}
+
+\textbf{Solucion}
+
+Puntero numero:40
+
+Valor de suma: 60 
+
+Puntero numero:60
+
+\vspace{7.5mm}
+
+*Puntero = NULL
+
+*Puntero $\rightarrow$ NULL
+
+Puntero = 40
+
+int *mipuntero = $\&$puntero
+
+*mipuntero $\rightarrow$ direccion puntero(40)
+
+mipuntero=40
+
+*mipuntero= *mipuntero $\rightarrow$ direccion puntero(40) + 20
+
+*mipuntero $\rightarrow$ direccion puntero(60)
+
+Puntero=60
+
+\vspace{10mm}
+
+{\color{RubineRed} \rule{\linewidth}{0.5mm} }
+
+\begin{lstlisting}[language=C,basicstyle=\footnotesize, style=estilocodigo]
+#include<pthread.h>
+#include<stdio.h>
+#include<stdlib.h>
+
+void valorsuma(int * mipuntero){
+    * mipuntero= * mipuntero+20;
+    printf("Valor de suma: %d\n",* mipuntero);
+}
+
+int main (int argc , char * argv[]){
+   int numero=40;
+   printf("Numero: %d\n",numero);
+   valorsuma(&numero);
+   printf("Numero: %d\n",numero);
+   
+}
+\end{lstlisting}
+
+\textbf{Solucion}
+
+Numero:40
+
+Valor de suma: 60 
+
+Numero:60
+
+\vspace{7.5mm}
+
+Numero = 40
+
+int *mipuntero = $\&$numero
+
+*mipuntero $\rightarrow$ direccion numero(40)
+
+mipuntero=40
+
+*mipuntero= *mipuntero $\rightarrow$ direccion puntero(40) + 20
+
+*mipuntero $\rightarrow$ direccion numero(60)
+
+Numero=60
+
+\vspace{10mm}
+
+\end{document}
