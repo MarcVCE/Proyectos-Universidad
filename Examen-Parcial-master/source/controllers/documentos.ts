@@ -4,7 +4,7 @@ import { MongoClient } from "mongodb";
 import { isTryStatement } from 'typescript';
 import { v4 as uuidv4 } from 'uuid';
 
-const uri = "mongodb+srv://Julian:1qscxf5t@mongodbarquitectura.ddc2a.mongodb.net/ExamenParcial?retryWrites=true&w=majority";
+const uri = "{url de conexión a MongoDB}";
 const client = new MongoClient(uri);
 
 const getStatus = async (req: Request, res: Response, next: NextFunction) => {
